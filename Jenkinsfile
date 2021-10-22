@@ -15,32 +15,22 @@ pipeline {
         sh 'echo $SVC_ACCOUNT_KEY | base64 -d > ./creds/serviceaccount.json'
       }
     }
-
-    stage('TF Plan') {
-      steps {
-        container('terraform') {
-          sh 'terraform init'
-          sh 'terraform plan -out myplan'
+    
+    stage('terraform init'){
+            steps{
+               sh 'terraform init' 
+            }
+            
         }
-      }      
-    }
-
-    stage('Approval') {
-      steps {
-        script {
-          def userInput = input(id: 'confirm', message: 'Apply Terraform?', parameters: [ [$class: 'BooleanParameterDefinition', defaultValue: false, description: 'Apply terraform', name: 'confirm'] ])
+         stage('terraform apply'){
+            steps{
+               sh 'terraform apply --auto-approve' 
+            }
+            
         }
-      }
-    }
+        
 
-    stage('TF Apply') {
-      steps {
-        container('terraform') {
-          sh 'terraform apply -input=false myplan'
-        }
-      }
-    }
-
+    
   } 
 
 }
