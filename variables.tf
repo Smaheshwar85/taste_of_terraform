@@ -3,7 +3,7 @@ type = string
 }
 variable "zone" {
   type = string
-  default = "us-central1-c"
+  default = "europe-west1-a"
   description = "Please mention zone default zone is us-central1-c"
 }
 variable "region" {
