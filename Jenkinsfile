@@ -3,7 +3,7 @@ pipeline {
   agent any
 
   environment {
-    SVC_ACCOUNT_KEY = credentials('terra-secret')
+    SVC_ACCOUNT_KEY = credentials('terraform-auth')
   }
 
   stages {
