@@ -5,7 +5,7 @@ stages {
   
   stage('Checkout') {
     environment {
-    SVC_ACCOUNT_KEY = credentials('terraform-auth')
+    SVC_ACCOUNT_KEY = credentials('terra-compute')
     
   }
   
@@ -16,7 +16,7 @@ stages {
         
         //'base64decode( '${SVC_ACCOUNT_KEY}') > /var/lib/jenkins/creds/serviceaccount.json'
         //sh 'echo $SVC_ACCOUNT_KEY | base64decode > /var/lib/jenkins/creds/serviceaccount.json'
-       // sh 'echo $SVC_ACCOUNT_KEY  > base64decode "/var/lib/jenkins/creds/serviceaccount.json" '
+        sh 'echo $SVC_ACCOUNT_KEY base64 -d  > /var/lib/jenkins/creds/serviceaccount.json'
       }
       
     }
