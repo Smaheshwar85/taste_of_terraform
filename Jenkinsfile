@@ -11,7 +11,7 @@ stages {
   
       steps {
         //checkout scm
-        //sh 'mkdir -p creds'
+        sh 'mkdir -p creds'
         sh "echo ' the is var $SVC_ACCOUNT_KEY'" 
         sh 'echo $SVC_ACCOUNT_KEY  > base64 -w0  ./creds/serviceaccount.json'
       }
