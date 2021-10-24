@@ -5,20 +5,22 @@ stages {
   
   stage('Checkout') {
     environment {
-     withCredentials([file(credentialsId: 'terra-compute', variable:'')]) {
+    
     SVC_ACCOUNT_KEY = credentials('terra-compute')
      }
     
-  }
+  
   
       steps {
         //checkout scm
+         withCredentials([file(credentialsId: 'terra-compute', variable:'')]) {
         sh 'mkdir -p /var/lib/jenkins/creds'
         sh "echo ' the is var $SVC_ACCOUNT_KEY'" 
         
         //'base64decode( '${SVC_ACCOUNT_KEY}') > /var/lib/jenkins/creds/serviceaccount.json'
         //sh 'echo $SVC_ACCOUNT_KEY | base64decode > /var/lib/jenkins/creds/serviceaccount.json'
         sh  '${SVC_ACCOUNT_KEY}  > /var/lib/jenkins/creds/serviceaccount.json'
+      }
       }
       
     }
