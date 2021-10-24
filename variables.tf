@@ -3,12 +3,12 @@ type = string
 }
 variable "zone" {
   type = string
-  default = "europe-west2-a"
+  default = "us-central1-c"
   description = "Please mention zone default zone is us-central1-c"
 }
 variable "region" {
   type = string
-  default = "europe-west2"
+  default = "us-central1"
   description = "Please mention region for your resource default is us-central1"
 }
 variable "machine_type" {
@@ -37,4 +37,17 @@ type = list
 
 variable "project" {
 type = string
+}
+
+variable "bucket_name" {
+  type = string
+  description = "Bucket name"
+}
+variable "bucket_location" {
+  type = string
+  default = "us-central1"
+}
+
+variable "storage_class" {
+  type = string
 }
