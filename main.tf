@@ -35,7 +35,7 @@ resource "google_compute_instance" "vm_instance" {
     }
 }
 
-resource "google_storage_bucket" "default" {
+resource "google_storage_bucket" "picture" {
   name = var.bucket_name
   project = var.project
   storage_class = var.storage_class
