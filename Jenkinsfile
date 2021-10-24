@@ -12,7 +12,7 @@ pipeline {
       steps {
         checkout scm
         sh 'mkdir -p creds' 
-        sh 'echo $SVC_ACCOUNT_KEY  > base64 -w0  .\creds\serviceaccount.json'
+        sh 'echo $SVC_ACCOUNT_KEY  > base64 -w0  ./creds/serviceaccount.json'
       }
       
     }
