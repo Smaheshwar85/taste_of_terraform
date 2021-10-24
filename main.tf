@@ -34,6 +34,13 @@ resource "google_compute_instance" "vm_instance" {
       }
     }
 }
+
+resource "google_storage_bucket" "default" {
+  name = var.bucket_name
+  project = var.project_id
+  storage_class = var.storage_class
+  location = var.bucket_location
+}
 /*module "iam-roles"{
 service_account =var.service_account
 roles   =var.bucket_roles
