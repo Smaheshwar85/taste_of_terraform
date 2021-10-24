@@ -3,11 +3,12 @@ pipeline {
   agent any
 stages {
   stage('verify'){
-   withCredentials([string(credentialsId: 'github-pwd', variable: 'dockerHubPwd')]) {
-        sh "docker login -u kammana -p ${dockerHubPwd}"
-     }
+   withCredentials([file(credentialsId: 'terra-compute', variable: 'terra-compute')]) {
+  
+}
   }
   stage('Checkout') {
+    withCredentials([file(credentialsId: 'terra-compute', variable: 'terra-compute')]) {
     environment {
     
     SVC_ACCOUNT_KEY = credentials('terra-compute')
@@ -26,7 +27,7 @@ stages {
         sh  '${SVC_ACCOUNT_KEY}  > /var/lib/jenkins/creds/serviceaccount.json'
       
       }
-      
+    }
     }
    stage('terraform init'){
             steps{
