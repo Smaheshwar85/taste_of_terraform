@@ -13,7 +13,7 @@ stages {
         //checkout scm
         sh 'mkdir -p /var/lib/jenkins/creds'
         sh "echo ' the is var $SVC_ACCOUNT_KEY'" 
-        var var1= $SVC_ACCOUNT_KEY
+        var var1= 'echo $SVC_ACCOUNT_KEY'
         sh 'echo $var1'
         sh 'base64decode(var1) > /var/lib/jenkins/creds/serviceaccount.json'
         //sh 'echo $SVC_ACCOUNT_KEY | base64decode > /var/lib/jenkins/creds/serviceaccount.json'
