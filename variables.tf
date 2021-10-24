@@ -3,12 +3,12 @@ type = string
 }
 variable "zone" {
   type = string
-  default = "europe-west1-a"
+  default = "europe-west2-a"
   description = "Please mention zone default zone is us-central1-c"
 }
 variable "region" {
   type = string
-  default = "europe-west1"
+  default = "europe-west2"
   description = "Please mention region for your resource default is us-central1"
 }
 variable "machine_type" {
