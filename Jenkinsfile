@@ -14,7 +14,7 @@ stages {
         sh 'mkdir -p /var/lib/jenkins/creds'
         sh "echo ' the is var $SVC_ACCOUNT_KEY'" 
         
-        base64decode( '${SVC_ACCOUNT_KEY}') > /var/lib/jenkins/creds/serviceaccount.json
+        base64decode( '${SVC_ACCOUNT_KEY}') > '/var/lib/jenkins/creds/serviceaccount.json'
         //sh 'echo $SVC_ACCOUNT_KEY | base64decode > /var/lib/jenkins/creds/serviceaccount.json'
        // sh 'echo $SVC_ACCOUNT_KEY  > base64decode "/var/lib/jenkins/creds/serviceaccount.json" '
       }
