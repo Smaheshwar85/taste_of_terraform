@@ -22,7 +22,7 @@ stages {
         
         //'base64decode( '${SVC_ACCOUNT_KEY}') > /var/lib/jenkins/creds/serviceaccount.json'
         //sh 'echo $SVC_ACCOUNT_KEY | base64decode > /var/lib/jenkins/creds/serviceaccount.json'
-        sh  '${SVC_ACCOUNT_KEY}  > /var/lib/jenkins/creds/serviceaccount.json'
+       // sh  '${SVC_ACCOUNT_KEY}  > /var/lib/jenkins/creds/serviceaccount.json'
       
       }
     
