@@ -2,11 +2,8 @@ pipeline {
 
   agent any
 stages {
-  stage('verify'){
-   withCredentials([file(credentialsId: 'terra-compute', variable: 'terra-compute')]) {
+ 
   
-}
-  }
   stage('Checkout') {
     withCredentials([file(credentialsId: 'terra-compute', variable: 'terra-compute')]) {
     environment {
