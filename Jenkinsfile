@@ -1,12 +1,25 @@
 pipeline {
 
   agent any
-
-  environment {
+stages {
+  
+  stage('Checkout') {
+    environment {
     SVC_ACCOUNT_KEY = credentials('terraform-auth')
+    
   }
+  
+      steps {
+        //checkout scm
+        //sh 'mkdir -p creds'
+        sh "echo ' the is var $SVC_ACCOUNT_KEY'" 
+        sh 'echo $SVC_ACCOUNT_KEY  > base64 -w0  ./creds/serviceaccount.json'
+      }
+      
+    }
+}
 
-  stages {
+  /*
 
     stage('Checkout') {
       steps {
@@ -28,9 +41,9 @@ pipeline {
                sh 'terraform apply --auto-approve' 
             }
             
-        }
+        }*/
         
 
-    } 
+   // } 
 
 }
