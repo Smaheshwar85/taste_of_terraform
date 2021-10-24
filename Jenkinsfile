@@ -5,6 +5,7 @@ stages {
   
   stage('Checkout') {
     environment {
+     withCredentials([file(credentialsId: 'terra-compute', variable:'')]) {
     SVC_ACCOUNT_KEY = credentials('terra-compute')
     
   }
