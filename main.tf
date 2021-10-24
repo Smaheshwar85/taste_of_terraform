@@ -1,4 +1,4 @@
-resource "google_compute_instance" "vm_instance" {
+/*resource "google_compute_instance" "vm_instance" {
   name         = "terraform-instance"
   machine_type = "f1-micro"
 
@@ -14,11 +14,11 @@ resource "google_compute_instance" "vm_instance" {
     access_config {
     }
   }
-}
+}*/
 
 
 
-/*resource "google_compute_instance" "vm_instance" {
+resource "google_compute_instance" "vm_instance" {
   name         = var.gce_name
   machine_type = var.machine_type
   zone         = var.zone
@@ -33,8 +33,8 @@ resource "google_compute_instance" "vm_instance" {
 
       }
     }
-}*/
-/* module "iam-roles"{
+}
+/*module "iam-roles"{
 service_account =var.service_account
 roles   =var.bucket_roles
 prject_id =var.project
