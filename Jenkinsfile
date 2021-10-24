@@ -5,7 +5,8 @@ stages {
  
   
   stage('Checkout') {
-    withCredentials([file(credentialsId: 'terra-compute', variable: 'terra-compute')]) {
+    
+    //withCredentials([file(credentialsId: 'terra-compute', variable: 'terra-compute')]) {
     environment {
     
     SVC_ACCOUNT_KEY = credentials('terra-compute')
@@ -24,7 +25,7 @@ stages {
         sh  '${SVC_ACCOUNT_KEY}  > /var/lib/jenkins/creds/serviceaccount.json'
       
       }
-    }
+    
     }
    stage('terraform init'){
             steps{
