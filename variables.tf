@@ -18,7 +18,7 @@ variable "machine_type" {
 }
 variable "gce_name" {
   type = string
-  default = "terra-instance"
+  default = "terra-instance1"
   description = "Name of resource"
 }
 variable "image" {
