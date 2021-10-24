@@ -35,7 +35,7 @@ resource "google_compute_instance" "vm_instance" {
     }
 }
 
-resource "google_storage_bucket" "tf_statbucket_learning" {
+resource "google_storage_bucket" "bucket" {
   name = var.bucket_name
   project = var.project
   storage_class = var.storage_class
