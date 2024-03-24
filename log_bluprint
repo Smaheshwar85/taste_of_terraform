@@ -1,0 +1,61 @@
+# Define the google_logging_project_bucket_config resource
+resource "google_logging_project_bucket_config" "this" {
+  project         = "data-engineering-demo-4132111111111111111"
+  location        = "global"
+  retention_days  = 60
+  bucket_id       = "center_for_allLogs"
+  description     = "center for all logs (Managed by Terraform)"
+}
+
+# Define the google_logging_project_sink resource
+resource "google_logging_project_sink" "example_sink" {
+  project     = "project-dev-416415555555555"
+  name        = "log_siink"
+  destination = "logging.googleapis.com/projects/data-engineering-demo-41321111111111111/locations/global/buckets/center_for_allLogs"
+  filter      = "severity >= ERROR"
+}
+
+# Add the new service account as a member in the destination project
+resource "google_project_iam_member" "this-bucket-writer" {
+  project = "data-engineering-demo-4132111111111111111"
+  role    = "roles/logging.bucketWriter"
+  member  = google_logging_project_sink.example_sink.writer_identity
+}
+
+resource "google_project_iam_member" "this-view-accessors" {
+  project = "data-engineering-demo-413211111111111111"
+  role    = "roles/logging.viewAccessor"
+  member  = google_logging_project_sink.example_sink.writer_identity
+}
+
+# Define IAM role bindings
+resource "google_project_iam_binding" "this-logging-bucket-writer" {
+  project = "data-engineering-demo-413211111111111111"
+  role    = "roles/logging.bucketWriter"
+
+  members = [
+    google_logging_project_sink.example_sink.writer_identity
+  ]
+}
+
+resource "google_project_iam_binding" "this-logging-view-accessors" {
+  project = "data-engineering-demo-4132111111111111111111"
+  role    = "roles/logging.viewAccessor"
+
+  members = [
+    google_logging_project_sink.example_sink.writer_identity
+  ]
+}
+
+# Define output values
+output "member_value" {
+  value = google_project_iam_member.this-bucket-writer.member
+}
+
+output "service_account_name" {
+  value = regex("serviceAccount:([^\\.]+)\\.", google_logging_project_sink.example_sink.writer_identity)[0]
+}
+
+output "sink_writer_identity" {
+  value = google_logging_project_sink.example_sink.writer_identity
+}
